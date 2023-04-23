@@ -19,19 +19,7 @@ app.use(cors());
 app.use(express.json());
 
 //Crear rutas
-app.use("/",routes);
-
-
-//rutas prueba hardcodeadas
-/*
-app.get("/probando", (req, res) => {
-  console.log("Se ha ejecutado el endpoint probando");
-
-  return res.status(200).send({
-    curso: "Nodejs",
-    autor: "Victor Robles WEB",
-  });
-});*/
+app.use("/", routes);
 
 //Crear servidor y escuchar peticiones http
 app.listen(puerto, () => {

@@ -7,7 +7,9 @@ const ArticleController = {
     let parametros = req.body;
     //Validar datos
     try {
-      let validarTitulo = !validator.isEmpty(parametros.titulo) && validator.isLength(parametros.titulo,{min: 0, max: 50});
+      let validarTitulo =
+        !validator.isEmpty(parametros.titulo) &&
+        validator.isLength(parametros.titulo, { min: 0, max: 50 });
       let validarContenido = !validator.isEmpty(parametros.contenido);
 
       if (!validarTitulo || !validarContenido) {
@@ -16,27 +18,24 @@ const ArticleController = {
 
       const article = await ArticleService.create(parametros);
 
-      return res.status(200).json({
-        message: "Article creado",
-        data: article
-      });
+      if (validator.isLength(article) == 0) {
+        return res.status(400).json({
+          status: "error",
+          message: "No se a guardado el articulo correctamente",
+        });
+      }
 
+      return res.status(200).json({
+        status: "succes",
+        message: "Article creado",
+        data: article,
+      });
     } catch (error) {
       return res.status(400).json({
-        status: "error"
+        status: "error",
+        message: error.message,
       });
     }
-
-    //Crear el objeto
-
-    //Asignar valores a objeto en el modelo
-
-    //Guardar el articulo en la base de datos
-
-    //Devolver resultado
-    return res.status(200).json({
-      message: "Accion de guardar",
-    });
   },
 };
 
