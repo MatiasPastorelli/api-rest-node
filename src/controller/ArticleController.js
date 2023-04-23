@@ -13,6 +13,14 @@ const ArticleController = {
       if (!validarTitulo || !validarContenido) {
         throw new Error("Error de validacion");
       }
+
+      const article = await ArticleService.create(parametros);
+
+      return res.status(200).json({
+        message: "Article creado",
+        data: article
+      });
+
     } catch (error) {
       return res.status(400).json({
         status: "error"
