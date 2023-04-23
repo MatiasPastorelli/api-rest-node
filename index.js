@@ -2,6 +2,8 @@ const conexion = require("./src/db/conexion");
 const express = require("express");
 const cors = require("cors");
 
+const routes = require("./src/routes/routes");
+
 console.log("App de node arrancada");
 
 conexion();
@@ -17,6 +19,11 @@ app.use(cors());
 app.use(express.json());
 
 //Crear rutas
+app.use("/",routes);
+
+
+//rutas prueba hardcodeadas
+/*
 app.get("/probando", (req, res) => {
   console.log("Se ha ejecutado el endpoint probando");
 
@@ -24,7 +31,7 @@ app.get("/probando", (req, res) => {
     curso: "Nodejs",
     autor: "Victor Robles WEB",
   });
-});
+});*/
 
 //Crear servidor y escuchar peticiones http
 app.listen(puerto, () => {
