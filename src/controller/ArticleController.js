@@ -37,6 +37,29 @@ const ArticleController = {
       });
     }
   },
+  findAll: async (req, res) => {
+    try {
+      const articles = await ArticleService.findAll();
+
+      if (!articles) {
+        return res.status(400).json({
+          status: "error",
+          message: "No se a guardado el articulo correctamente",
+        });
+      }
+
+      return res.status(200).json({
+        status: "succes",
+        message: "Lista de articulos",
+        data: articles,
+      });
+    } catch (error) {
+      return res.status(400).json({
+        status: "error",
+        message: error.message,
+      });
+    }
+  },
 };
 
 module.exports = ArticleController;

@@ -7,6 +7,11 @@ const ArticleRepository = {
 
     return article;
   },
+  findAll: async () => {
+    const article = Article.find().exec();
+
+    return article;
+  },
 };
 
 module.exports = ArticleRepository;
