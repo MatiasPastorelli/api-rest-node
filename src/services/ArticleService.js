@@ -1,14 +1,11 @@
 const ArticleRepository = require("../repository/ArticleRepository");
 
 const ArticleService = {
-  /*
-   * Crear artiuclo
-   */
-  create: async (parametros) => ArticleRepository.create(parametros),
-  /*
-   * Listar articulos
-   */
-  findAll: async () => ArticleRepository.findAll(),
+  create: async (parametros) => await ArticleRepository.create(parametros),
+
+  findAll: async () => await ArticleRepository.findAll(),
+
+  findById: async (id) => await ArticleRepository.findById(id),
 };
 
 module.exports = ArticleService;

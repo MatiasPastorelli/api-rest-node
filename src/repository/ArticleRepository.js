@@ -8,9 +8,10 @@ const ArticleRepository = {
     return article;
   },
   findAll: async () => {
-    const article = Article.find().exec();
-
-    return article;
+    return Article.find().sort({ fecha: -1 }).exec(); // con sort ordena como uno quiera
+  },
+  findById: async (id) => {
+    return await Article.findById({ _id: id }).exec();
   },
 };
 
